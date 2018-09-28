@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseEndpoint } from '../constants/api-enpoints';
+import { API_ENDPOINT } from '../constants';
 
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.responseType = 'json';
@@ -24,8 +24,8 @@ const invoke = (baseURL, method) => async (path, body, token, { headers = {}, qu
 };
 
 export default {
-  get: invoke(baseEndpoint, 'GET'),
-  post: invoke(baseEndpoint, 'POST'),
-  put: invoke(baseEndpoint, 'PUT'),
-  delete: invoke(baseEndpoint, 'DELETE')
+  get: invoke(API_ENDPOINT, 'GET'),
+  post: invoke(API_ENDPOINT, 'POST'),
+  put: invoke(API_ENDPOINT, 'PUT'),
+  delete: invoke(API_ENDPOINT, 'DELETE')
 }

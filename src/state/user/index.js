@@ -31,6 +31,14 @@ export const loginUserReject = createAction(
 );
 
 /**
+ * SELECTORS
+ */
+export const getUser = state => state.user;
+export const getUserName = state => state.user.name;
+export const getUserRoom = state => state.user.room;
+export const getUserCoin = state => state.user.coin;
+
+/**
  * REDUCER
  */
 export const reducer = handleActions(
