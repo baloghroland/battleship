@@ -164,7 +164,8 @@ body{
 }
 
 .ships{
-  margin-top: 5px;
+	margin-top: 5px;
+	height: 280px;
 }
 
 .ship{
@@ -173,7 +174,9 @@ body{
 
 .ship span{
   display: inline-block;
-  padding: 10px 17px;
+	padding: 10px 17px;
+	border-radius: 30px;
+	margin-right: 5px;
 }
 
 .ship.active span, .ship:hover span{
@@ -190,4 +193,9 @@ body{
 
 .points.clickable {
   cursor: pointer;
+}
+
+.login {
+	width: 300px;
+	margin: 0 auto;
 }
