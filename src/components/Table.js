@@ -8,9 +8,10 @@ class Table extends Component {
     }
 
     this.placeShip = (x, y, size, direction) => {
-      const { addUserShip, activeShip } = this.props;
+      const { addUserShip, activeShip, setActiveShip } = this.props;
 
       addUserShip(x, y, size, direction, activeShip-1);
+      setActiveShip(activeShip+1);
     }
 
     this.createTable = y => {
