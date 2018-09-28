@@ -1,11 +1,7 @@
 import Login from '../components/Login';
 
 import { loginUser } from '../state/user';
-<<<<<<< Updated upstream
-import { createOrJoinGame } from '../state/game';
-=======
-import { getIsStartEnabled } from '../state/game';
->>>>>>> Stashed changes
+import { getIsStartEnabled, createOrJoinGame } from '../state/game';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ user: state.user, startEnabled: getIsStartEnabled(state) });
