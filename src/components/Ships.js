@@ -8,7 +8,6 @@ class Ships extends Component {
     const { activeShip, setActiveShip, userShips } = this.props;
 
     const placedIndexes = userShips.map(ship => ship.idx);
-    console.log('userShiposs: ', userShips);
 
     return (
       <div className="ships">

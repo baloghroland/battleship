@@ -8,9 +8,13 @@ class Table extends Component {
     }
 
     this.placeShip = (x, y, size, direction) => {
-      const { addUserShip, activeShip, setActiveShip } = this.props;
+      const { addUserShip, activeShip, setActiveShip, userShips } = this.props;
+      const placedIndexes = userShips.map(ship => ship.idx);
 
-      addUserShip(x, y, size, direction, activeShip-1);
+      if (placedIndexes.indexOf(activeShip-1) === -1) {
+        addUserShip(x, y, size, direction, activeShip-1);
+      }
+      
       setActiveShip(activeShip+1);
     }
 
