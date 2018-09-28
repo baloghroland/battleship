@@ -5,11 +5,11 @@ import { handleActions, createAction } from 'redux-actions';
  */
 export const initialState = {
   ships: [
-    {size: 2},
-    {size: 3},
-    {size: 3},
-    {size: 4},
     {size: 5},
+    {size: 4},
+    {size: 3},
+    {size: 3},
+    {size: 2},
   ],
   activeShip: 1,
 };
@@ -22,9 +22,9 @@ export const SELECT_SHIP = 'SELECT_SHIP';
 /**
  * ACTION CREATORS
  */
-export const selectShip = createAction(
+export const setActiveShip = createAction(
   SELECT_SHIP,
-  (idx, size) => ({ idx, size })
+  activeShip => activeShip
 );
 
 /**
@@ -38,7 +38,7 @@ export const getShips = state => state.ships.ships;
  */
 export const reducer = handleActions(
   {
-    [selectShip]: (state, { payload: { idx, size } }) => ({ ...state, idx, size }),
+    [setActiveShip]: (state, { payload: activeShip }) => ({ ...state, activeShip }),
   },
   initialState
 );
