@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
 class Table extends Component {
+  constructor(props) {
+    super(props);
+
+    this.createTable = y => {
+      const arr = [1,2,3,4,5,6,7,8,9,10];
+
+      return arr.map((el) => {
+        return <li class="points offset1 1" onClick={() => console.log('click x: ', el, 'y: ', y)}><span class="hole"></span></li>
+      });
+    }
+  }
+
   render() {
     return (
       <div className="table">
@@ -19,106 +31,16 @@ class Table extends Component {
               <span class="aTops">9</span>
               <span class="aTops">10</span>
               <ul class="gridd">
-                <li class="points offset1 1"><span class="hole"></span></li>
-                <li class="points offset1 2"><span class="hole"></span></li>
-                <li class="points offset1 3"><span class="hole"></span></li>
-                <li class="points offset1 4"><span class="hole"></span></li>
-                <li class="points offset1 5"><span class="hole"></span></li>
-                <li class="points offset1 6"><span class="hole"></span></li>
-                <li class="points offset1 7"><span class="hole"></span></li>
-                <li class="points offset1 8"><span class="hole"></span></li>
-                <li class="points offset1 9"><span class="hole"></span></li>
-                <li class="points offset1 10"><span class="hole"></span></li>
-                <li class="points offset2 11"><span class="hole"></span></li>
-                <li class="points offset2 12"><span class="hole"></span></li>
-                <li class="points offset2 13"><span class="hole"></span></li>
-                <li class="points offset2 14"><span class="hole"></span></li>
-                <li class="points offset2 15"><span class="hole"></span></li>
-                <li class="points offset2 16"><span class="hole"></span></li>
-                <li class="points offset2 17"><span class="hole"></span></li>
-                <li class="points offset2 18"><span class="hole"></span></li>
-                <li class="points offset2 19"><span class="hole"></span></li>
-                <li class="points offset2 20"><span class="hole"></span></li>
-                <li class="points offset2 21"><span class="hole"></span></li>
-                <li class="points offset2 22"><span class="hole"></span></li>
-                <li class="points offset2 23"><span class="hole"></span></li>
-                <li class="points offset2 24"><span class="hole"></span></li>
-                <li class="points offset2 25"><span class="hole"></span></li>
-                <li class="points offset2 26"><span class="hole"></span></li>
-                <li class="points offset2 27"><span class="hole"></span></li>
-                <li class="points offset2 28"><span class="hole"></span></li>
-                <li class="points offset2 29"><span class="hole"></span></li>
-                <li class="points offset2 30"><span class="hole"></span></li>
-                <li class="points offset2 31"><span class="hole"></span></li>
-                <li class="points offset2 32"><span class="hole"></span></li>
-                <li class="points offset2 33"><span class="hole"></span></li>
-                <li class="points offset2 34"><span class="hole"></span></li>
-                <li class="points offset2 35"><span class="hole"></span></li>
-                <li class="points offset2 36"><span class="hole"></span></li>
-                <li class="points offset2 37"><span class="hole"></span></li>
-                <li class="points offset2 38"><span class="hole"></span></li>
-                <li class="points offset2 39"><span class="hole"></span></li>
-                <li class="points offset2 40"><span class="hole"></span></li>
-                <li class="points offset2 41"><span class="hole"></span></li>
-                <li class="points offset2 42"><span class="hole"></span></li>
-                <li class="points offset2 43"><span class="hole"></span></li>
-                <li class="points offset2 44"><span class="hole"></span></li>
-                <li class="points offset2 45"><span class="hole"></span></li>
-                <li class="points offset2 46"><span class="hole"></span></li>
-                <li class="points offset2 47"><span class="hole"></span></li>
-                <li class="points offset2 48"><span class="hole"></span></li>
-                <li class="points offset2 49"><span class="hole"></span></li>
-                <li class="points offset2 50"><span class="hole"></span></li>
-                <li class="points offset2 51"><span class="hole"></span></li>
-                <li class="points offset2 52"><span class="hole"></span></li>
-                <li class="points offset2 53"><span class="hole"></span></li>
-                <li class="points offset2 54"><span class="hole"></span></li>
-                <li class="points offset2 55"><span class="hole"></span></li>
-                <li class="points offset2 56"><span class="hole"></span></li>
-                <li class="points offset2 57"><span class="hole"></span></li>
-                <li class="points offset2 58"><span class="hole"></span></li>
-                <li class="points offset2 59"><span class="hole"></span></li>
-                <li class="points offset2 60"><span class="hole"></span></li>
-                <li class="points offset2 61"><span class="hole"></span></li>
-                <li class="points offset2 62"><span class="hole"></span></li>
-                <li class="points offset2 63"><span class="hole"></span></li>
-                <li class="points offset2 64"><span class="hole"></span></li>
-                <li class="points offset2 65"><span class="hole"></span></li>
-                <li class="points offset2 66"><span class="hole"></span></li>
-                <li class="points offset2 67"><span class="hole"></span></li>
-                <li class="points offset2 68"><span class="hole"></span></li>
-                <li class="points offset2 69"><span class="hole"></span></li>
-                <li class="points offset2 70"><span class="hole"></span></li>
-                <li class="points offset2 71"><span class="hole"></span></li>
-                <li class="points offset2 72"><span class="hole"></span></li>
-                <li class="points offset2 73"><span class="hole"></span></li>
-                <li class="points offset2 74"><span class="hole"></span></li>
-                <li class="points offset2 75"><span class="hole"></span></li>
-                <li class="points offset2 76"><span class="hole"></span></li>
-                <li class="points offset2 77"><span class="hole"></span></li>
-                <li class="points offset2 78"><span class="hole"></span></li>
-                <li class="points offset2 79"><span class="hole"></span></li>
-                <li class="points offset2 80"><span class="hole"></span></li>
-                <li class="points offset2 81"><span class="hole"></span></li>
-                <li class="points offset2 82"><span class="hole"></span></li>
-                <li class="points offset2 83"><span class="hole"></span></li>
-                <li class="points offset2 84"><span class="hole"></span></li>
-                <li class="points offset2 85"><span class="hole"></span></li>
-                <li class="points offset2 86"><span class="hole"></span></li>
-                <li class="points offset2 87"><span class="hole"></span></li>
-                <li class="points offset2 88"><span class="hole"></span></li>
-                <li class="points offset2 89"><span class="hole"></span></li>
-                <li class="points offset2 90"><span class="hole"></span></li>
-                <li class="points offset2 91"><span class="hole"></span></li>
-                <li class="points offset2 92"><span class="hole"></span></li>
-                <li class="points offset2 93"><span class="hole"></span></li>
-                <li class="points offset2 94"><span class="hole"></span></li>
-                <li class="points offset2 95"><span class="hole"></span></li>
-                <li class="points offset2 96"><span class="hole"></span></li>
-                <li class="points offset2 97"><span class="hole"></span></li>
-                <li class="points offset2 98"><span class="hole"></span></li>
-                <li class="points offset2 99"><span class="hole"></span></li>
-                <li class="points offset2 100"><span class="hole"></span></li>
+                {this.createTable(1)}
+                {this.createTable(2)}
+                {this.createTable(3)}
+                {this.createTable(4)}
+                {this.createTable(5)}
+                {this.createTable(6)}
+                {this.createTable(7)}
+                {this.createTable(8)}
+                {this.createTable(9)}
+                {this.createTable(10)}
               </ul>
               <span class="aLeft">A</span>
               <span class="aLeft">B</span>
