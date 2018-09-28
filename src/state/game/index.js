@@ -38,7 +38,7 @@ export const SHOOT_REJECT = 'SHOOT_REJECT';
  */
 export const addUserShip = createAction(
   ADD_USER_SHIP,
-  (x, y, size, orientation) => ({ x, y, size, orientation })
+  (x, y, size, orientation, idx) => ({ x, y, size, orientation, idx })
 );
 
 export const createOrJoinGameResolve = createAction(
@@ -96,7 +96,7 @@ export const getLastDestroyedShipSize = createSelector(
  */
 export const reducer = handleActions(
   {
-    [addUserShip]: (state, { payload: { x, y, size, orientation } }) => ({ ...state, userShips: [...state.userShips, { x, y, size, orientation }] }),
+    [addUserShip]: (state, { payload: { x, y, size, orientation, idx } }) => ({ ...state, userShips: [...state.userShips, { x, y, size, orientation, idx }] }),
     [createOrJoinGameResolve]: (state, { payload: result }) => ({ ...state, status: GAME_STATE.WAITING_FOR_OPPONENT, password: result.password }),
     [createOrJoinGameReject]: (state, { payload: error }) => ({ ...state, error }),
     [updateGameStatus]: (state, { payload: status }) => ({ ...state, status }),

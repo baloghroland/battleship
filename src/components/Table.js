@@ -5,15 +5,12 @@ class Table extends Component {
     super(props);
 
     this.state = {
-      ships: [],
-      activeShip: 1,
     }
 
     this.placeShip = (x, y, size, direction) => {
-      const { addUserShip } = this.props;
+      const { addUserShip, activeShip } = this.props;
 
-      addUserShip(x, y, size, direction);
-      console.log('ship placement: ', x, y, size, direction);
+      addUserShip(x, y, size, direction, activeShip-1);
     }
 
     this.createTable = y => {
