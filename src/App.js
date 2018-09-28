@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Game from './components/Game.js';
+import Game from './containers/GameContainer.js';
 
 class App extends Component {
   render() {
@@ -10,8 +10,8 @@ class App extends Component {
           <img src="head.png" height="120" />
           <Game />
         </div>
-        <audio 
-          loop="loop" 
+        <audio
+          loop="loop"
           autoPlay="autoplay"
         >
             <source src="song.mp3" type="audio/mpeg" />

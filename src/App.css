@@ -218,3 +218,17 @@ form .radioss label{
 .foot{
   margin-top:15px;
 }
+.end-screen {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	font-size: 80px;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 100;
+}
+
+.end-screen p {
+	margin-top: 10rem;
+}
