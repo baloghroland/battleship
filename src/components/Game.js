@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './Table.js';
+import ShipsContainer from '../containers/ShipsContainer';
 import LoginContainer from '../containers/LoginContainer';
 
 class Game extends Component {
@@ -13,6 +14,7 @@ class Game extends Component {
         </div>
         <div className="col">
           <LoginContainer />
+          <ShipsContainer />
         </div>
         <div className="col">
           <div className="enemy">

@@ -123,6 +123,10 @@ body{
 	display: inline-block;
 }
 
+.points:hover, .points.active{
+  background-color: #b00;
+}
+
 .highlight {
 	background: rgba(144,144,144,0.9);
 }

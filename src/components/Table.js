@@ -8,7 +8,7 @@ class Table extends Component {
       const arr = [1,2,3,4,5,6,7,8,9,10];
 
       return arr.map((el) => {
-        return <li class="points offset1 1" onClick={() => console.log('click x: ', el, 'y: ', y)}><span class="hole"></span></li>
+        return <li className="points offset1 1" onClick={() => console.log('click x: ', el, 'y: ', y)}><span className="hole"></span></li>
       });
     }
   }
@@ -16,21 +16,21 @@ class Table extends Component {
   render() {
     return (
       <div className="table">
-        <div class="board">
-          <div class="displays">
-            <div class="top">
-              <span class="aTops hidezero">0</span>
-              <span class="aTops">1</span>
-              <span class="aTops">2</span>
-              <span class="aTops">3</span>
-              <span class="aTops">4</span>
-              <span class="aTops">5</span>
-              <span class="aTops">6</span>
-              <span class="aTops">7</span>
-              <span class="aTops">8</span>
-              <span class="aTops">9</span>
-              <span class="aTops">10</span>
-              <ul class="gridd">
+        <div className="board">
+          <div className="displays">
+            <div className="top">
+              <span className="aTops hidezero">0</span>
+              <span className="aTops">1</span>
+              <span className="aTops">2</span>
+              <span className="aTops">3</span>
+              <span className="aTops">4</span>
+              <span className="aTops">5</span>
+              <span className="aTops">6</span>
+              <span className="aTops">7</span>
+              <span className="aTops">8</span>
+              <span className="aTops">9</span>
+              <span className="aTops">10</span>
+              <ul className="gridd">
                 {this.createTable(1)}
                 {this.createTable(2)}
                 {this.createTable(3)}
@@ -42,16 +42,16 @@ class Table extends Component {
                 {this.createTable(9)}
                 {this.createTable(10)}
               </ul>
-              <span class="aLeft">A</span>
-              <span class="aLeft">B</span>
-              <span class="aLeft">C</span>
-              <span class="aLeft">D</span>
-              <span class="aLeft">E</span>
-              <span class="aLeft">F</span>
-              <span class="aLeft">G</span>
-              <span class="aLeft">H</span>
-              <span class="aLeft">I</span>
-              <span class="aLeft">J</span>
+              <span className="aLeft">A</span>
+              <span className="aLeft">B</span>
+              <span className="aLeft">C</span>
+              <span className="aLeft">D</span>
+              <span className="aLeft">E</span>
+              <span className="aLeft">F</span>
+              <span className="aLeft">G</span>
+              <span className="aLeft">H</span>
+              <span className="aLeft">I</span>
+              <span className="aLeft">J</span>
             </div>
           </div>
         </div>
