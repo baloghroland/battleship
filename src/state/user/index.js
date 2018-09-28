@@ -1,5 +1,4 @@
 import { handleActions, createAction } from 'redux-actions';
-import axios from 'axios';
 
 export const initialState = {
   id: '',
@@ -31,9 +30,9 @@ export const reducer = handleActions(
   initialState
 );
 
-export const loginUser = (room, name) => async (dispatch) => {
+export const loginUser = (name, room) => async (dispatch, getState, { api }) => {
   try {
-    const result = await axios.post('/user', { name });
+    const result = await api.post('/user', { name });
     dispatch(loginUserResolve(result._id, result.name, result.coin, room));
     console.log('Login result', result);
   } catch (error) {
