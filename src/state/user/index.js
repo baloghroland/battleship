@@ -41,14 +41,7 @@ export const reducer = handleActions(
   initialState
 );
 
-<<<<<<< Updated upstream
 export const loginUser = (room, name) => async (dispatch, getState, { api }) => {
-=======
-/**
- * ASYNC ACTIONS
- */
-export const loginUser = (name, room) => async (dispatch, getState, { api }) => {
->>>>>>> Stashed changes
   try {
     const result = await api.post('/user', { name });
     dispatch(loginUserResolve(result._id, result.name, result.coin, room));
