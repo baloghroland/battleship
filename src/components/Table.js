@@ -14,17 +14,18 @@ class Table extends Component {
       if (placedIndexes.indexOf(activeShip-1) === -1) {
         addUserShip(x, y, size, direction, activeShip-1);
       }
-      
+
       setActiveShip(activeShip+1);
     }
 
     this.createTable = y => {
       const arr = [1,2,3,4,5,6,7,8,9,10];
-      const { activeShip, ships } = this.props;
+      const { activeShip, ships, userShips } = this.props;
+
 
       return arr.map((x) => {
         return (
-          <li className="points offset1 1" onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')}>
+          <li className="points offset1 1" onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')} style={userShips.length === 5 ? {pointerEvents: 'none'} :  {}}>
             <span className="hole"></span>
           </li>
         )
