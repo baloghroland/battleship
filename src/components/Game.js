@@ -25,11 +25,7 @@ class Game extends Component {
             </div>
           </div>
         </div>
-        <div className="game row">
-          <div className="col-sm-12">
-            <LoginContainer />
-          </div>
-        </div>
+        <LoginContainer />
       </div>
     );
   }
