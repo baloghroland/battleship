@@ -31,6 +31,10 @@ class Login extends Component {
     }
   }
   render() {
+    const { startEnabled } = this.props;
+    const { radio } = this.state;
+    const start = radio === 'ai' || startEnabled;
+    console.log(this.state.radio);
     return (
       <form className="login">
         <div>
@@ -44,7 +48,7 @@ class Login extends Component {
           <input type="radio" name="ai-human" value="human" id="human" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="human" >Human</label>
         </div>
         <div>
-          <button type="submit" className="btn btn-info" onClick={this.handleLogin}>Start</button>
+          <button type="submit" className="btn btn-info" onClick={this.handleLogin} disabled={!start}>Start</button>
         </div>
       </form>
     );

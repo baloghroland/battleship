@@ -9,9 +9,7 @@ import { getUser, getUserName } from '../user';
 export const initialState = {
   status: GAME_STATE.INIT,
   isUserTurn: false,
-  userShips: [
-    
-  ],
+  userShips: [],
   password: '',
   error: null,
   lastShootType: null,
@@ -110,6 +108,10 @@ export const getEnemyShoots = createSelector(
 export const getIsGameStatusInProgress = createSelector(
   getGameStatus,
   status => status === GAME_STATE.BATTLE_IN_PROGRESS
+);
+export const getIsStartEnabled = createSelector(
+  getUserShips,
+  userShips => userShips.length === 5
 );
 
 /**
