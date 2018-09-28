@@ -22,9 +22,9 @@ class Login extends Component {
   render() {
     return (
       <form className="login">
-        <label htmlFor="game">Room name<input name="game" id="game" placeholder="Example Game" onChange={this.handleChange} /></label>
-        <label htmlFor="name">Player name<input name="name" id="name" placeholder="Example User" onChange={this.handleChange} /></label>
-        <div><button type="submit" onClick={this.handleLogin}>Start</button></div>
+        <label htmlFor="game"><input name="game" id="game" placeholder="Room name" onChange={this.handleChange} /></label>
+        <label htmlFor="name"><input name="name" id="name" placeholder="Player name" onChange={this.handleChange} /></label>
+        <div><button type="submit" className="btn btn-info" onClick={this.handleLogin}>Start</button></div>
       </form>
     );
   }
