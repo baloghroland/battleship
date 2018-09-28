@@ -4,16 +4,30 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      ships: [],
+      activeShip: 1,
+    }
+
+    this.placeShip = (x, y, size, direction) => {
+      console.log('ship placement: ', x, y, size, direction);
+    }
+
     this.createTable = y => {
       const arr = [1,2,3,4,5,6,7,8,9,10];
+      const { activeShip, ships } = this.props;
 
-      return arr.map((el) => {
-        return <li className="points offset1 1" onClick={() => console.log('click x: ', el, 'y: ', y)}><span className="hole"></span></li>
+      return arr.map((x) => {
+        return (
+          <li className="points offset1 1" onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')}>
+            <span className="hole"></span>
+          </li>
+        )
       });
     }
   }
 
-  render() {
+  render() {    
     return (
       <div className="table">
         <div className="board">

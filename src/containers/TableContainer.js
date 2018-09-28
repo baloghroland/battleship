@@ -1,10 +1,10 @@
 import Table from '../components/Table';
 
-import { addUserShip } from '../state/game';
+import { getActiveShip, getShips } from '../state/ships';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({ game: state.user });
+const mapStateToProps = state => ({ activeShip: getActiveShip(state), ships: getShips(state) });
 
-const mapDispatchToProps = ({ addUserShip });
+const mapDispatchToProps = ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

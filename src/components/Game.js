@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Table from './Table.js';
 import ShipsContainer from '../containers/ShipsContainer';
 import LoginContainer from '../containers/LoginContainer';
+import TableContainer from '../containers/TableContainer';
 
 class Game extends Component {
   render() {
@@ -9,7 +9,7 @@ class Game extends Component {
       <div className="game row">
         <div className="col">
           <div className="own">
-            <Table />
+            <TableContainer />
           </div>
         </div>
         <div className="col">
@@ -18,7 +18,7 @@ class Game extends Component {
         </div>
         <div className="col">
           <div className="enemy">
-            <Table />
+            <TableContainer />
           </div>
         </div>
       </div>

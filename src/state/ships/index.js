@@ -31,6 +31,7 @@ export const selectShip = createAction(
  * SELECTORS
  */
 export const getActiveShip = state => state.ships.activeShip;
+export const getShips = state => state.ships.ships;
 
 /**
  * REDUCER
