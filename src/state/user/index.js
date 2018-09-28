@@ -31,7 +31,7 @@ export const reducer = handleActions(
   initialState
 );
 
-export const loginUser = (name, room) => async (dispatch) => {
+export const loginUser = (room, name) => async (dispatch) => {
   try {
     const result = await axios.post('/user', { name });
     dispatch(loginUserResolve(result._id, result.name, result.coin, room));
