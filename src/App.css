@@ -133,7 +133,7 @@ body{
 }
 
 .points:hover, .points.active{
-  background-color: #b00;
+  background-color: #f18509;
 }
 
 .highlight {
@@ -177,4 +177,16 @@ body{
 
 .ship.active span, .ship:hover span{
   background-color: #b00
+}
+
+.points.hit {
+  background-color: #00a500;
+}
+
+.points.miss {
+  background-color: #c50909;
+}
+
+.points.clickable {
+  cursor: pointer;
 }

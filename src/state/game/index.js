@@ -105,6 +105,10 @@ export const getEnemyShoots = createSelector(
   [getShoots, getUserName],
   (shoots, username) => shoots.filter(shoot => shoot.name !== username)
 );
+export const getIsGameStatusInProgress = createSelector(
+  getGameStatus,
+  status => status === GAME_STATE.BATTLE_IN_PROGRESS
+);
 
 /**
  * REDUCER

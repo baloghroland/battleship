@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
 
-class Table extends Component {
+class TargetTable extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    }
-
-    this.placeShip = (x, y, size, direction) => {
-      const { addUserShip, activeShip, setActiveShip, userShips } = this.props;
-      const placedIndexes = userShips.map(ship => ship.idx);
-
-      if (placedIndexes.indexOf(activeShip-1) === -1) {
-        addUserShip(x, y, size, direction, activeShip-1);
-      }
-
-      setActiveShip(activeShip+1);
-    }
 
     this.createTable = y => {
-      const arr = [1,2,3,4,5,6,7,8,9,10];
-      const { activeShip, ships, userShips } = this.props;
-
+      const { shoot, userShoots, inProgress } = this.props;
+      const arr = [0,1,2,3,4,5,6,7,8,9];
 
       return arr.map((x) => {
+        const foundShoot = userShoots.find(us => us.x === x && us.y === y);
+        const style = foundShoot ? foundShoot.type : 'clickable';
+
         return (
-          <li key={`${x}${y}`} className="points offset1 1" onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')} style={userShips.length === 5 ? {pointerEvents: 'none'} :  {}}>
+          <li key={`${x}${y}`} className={`points offset1 1 ${style}`} onClick={() => (!foundShoot && !inProgress) ? null : shoot(x, y)}>
             <span className="hole"></span>
           </li>
         )
@@ -49,6 +38,7 @@ class Table extends Component {
           <span className="aTops">9</span>
           <span className="aTops">10</span>
           <ul className="gridd">
+            {this.createTable(0)}
             {this.createTable(1)}
             {this.createTable(2)}
             {this.createTable(3)}
@@ -58,7 +48,6 @@ class Table extends Component {
             {this.createTable(7)}
             {this.createTable(8)}
             {this.createTable(9)}
-            {this.createTable(10)}
           </ul>
           <span className="aLeft">A</span>
           <span className="aLeft">B</span>
@@ -76,4 +65,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default TargetTable;
