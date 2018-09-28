@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from './Table.js';
+import LoginContainer from '../containers/LoginContainer';
 
 class Game extends Component {
   render() {
@@ -9,6 +10,9 @@ class Game extends Component {
           <div className="own">
             <Table />
           </div>
+        </div>
+        <div className="col">
+          <LoginContainer />
         </div>
         <div className="col">
           <div className="enemy">
