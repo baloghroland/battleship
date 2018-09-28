@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
+import { createSelector } from 'reselect';
 import { GAME_STATE } from '../../constants';
-import { getUser, getUserRoom, getUserName } from '../user';
+import { getUser } from '../user';
 import { setAppIsWaiting } from '../app';
 
 /**
@@ -11,7 +12,9 @@ export const initialState = {
   isUserTurn: false,
   userShips: [],
   password: '',
-  error: null
+  error: null,
+  lastShootType: null,
+  lastShootResult: {}
 };
 
 /**
@@ -25,6 +28,10 @@ export const CREATE_OR_JOIN_GAME_REJECT = 'CREATE_OR_JOIN_GAME_REJECT';
 export const UPDATE_GAME_STATUS = 'UPDATE_GAME_STATUS';
 
 export const SET_USER_TURN = 'SET_USER_TURN';
+
+export const SHOOT_RESOLVE = 'SHOOT_RESOLVE';
+export const SHOOT_REJECT = 'SHOOT_REJECT';
+
 
 /**
  * ACTION CREATORS
@@ -53,6 +60,15 @@ export const setUserTurn = createAction(
   isUserTurn => isUserTurn
 );
 
+export const shootResolve = createAction(
+  SHOOT_RESOLVE,
+  (destroy, type) => ({ destroy, type })
+);
+export const shootReject = createAction(
+  SHOOT_REJECT,
+  error => error
+);
+
 /**
  * SELECTORS
  */
@@ -60,6 +76,20 @@ export const getUserShips = state => state.game.userShips;
 export const getGameStatus = state => state.game.status;
 export const getGamePassword = state => state.game.password;
 export const getIsUserTurn = state => state.game.isUserTurn;
+export const getLastShootResult = state => state.game.lastShootResult;
+export const getLastShotType = state => state.game.lastShootType;
+export const getIsLastShootHit = createSelector(
+  getLastShotType,
+  lastShootType => lastShootType === 'hit'
+);
+export const geIsLastShootDestroyed = createSelector(
+  getLastShootResult,
+  lastShootResult => !!lastShootResult
+);
+export const getLastDestroyedShipSize = createSelector(
+  getLastShootResult,
+  lastShootResult => lastShootResult ? lastShootResult.size : 0
+);
 
 /**
  * REDUCER
@@ -70,7 +100,9 @@ export const reducer = handleActions(
     [createOrJoinGameResolve]: (state, { payload: result }) => ({ ...state, status: GAME_STATE.WAITING_FOR_OPPONENT, password: result.password }),
     [createOrJoinGameReject]: (state, { payload: error }) => ({ ...state, error }),
     [updateGameStatus]: (state, { payload: status }) => ({ ...state, status }),
-    [setUserTurn]: (state, { payload: isUserTurn }) => ({ ...state, isUserTurn })
+    [setUserTurn]: (state, { payload: isUserTurn }) => ({ ...state, isUserTurn }),
+    [shootResolve]: (state, { payload: { destroy, type } }) => ({ ...state, lastShootType: type, lastShootResult: destroy }),
+    [shootReject]: (state, { payload: error }) => ({ ...state, error })
   },
   initialState
 );
@@ -80,7 +112,6 @@ export const reducer = handleActions(
  */
 export const createOrJoinGame = () => async (dispatch, getState, { api }) => {
   try {
-    await dispatch(setAppIsWaiting(true));
     const user = getUser(getState());
     const userShips = getUserShips(getState());
     const result = await api.post('/battleship/createOrJoin', { name: user.name, gameId: 'random-gae-id', sessionId: user.room, shipPosition: userShips });
@@ -96,7 +127,7 @@ export const getGameState = () => async (dispatch, getState, { api }) => {
   try {
     const password = getGamePassword(getState());
     const user = getUser(getState());
-    const result = await api.post(`/battleship/getState?sessionId=${user.room}&name=${user.name}&password=${password}`);
+    const result = await api.get(`/battleship/getState?sessionId=${user.room}&name=${user.name}&password=${password}`);
     switch(result.state) {
       case 'new':
         await dispatch(updateGameStatus(GAME_STATE.WAITING_FOR_OPPONENT));
@@ -111,6 +142,18 @@ export const getGameState = () => async (dispatch, getState, { api }) => {
     }
     if (result.turn === user.name) await dispatch(setUserTurn(true));
     await dispatch(setUserTurn(false));
+  } catch (error) {
+    console.error('getGameState', error);
+  }
+};
+
+
+export const shoot = (x, y) => async (dispatch, getState, { api }) => {
+  try {
+    const user = getUser(getState());
+    const password = getGamePassword(getState());
+    const { destroy, type } = await api.post('/battleship/shoot', { sessionId: user.room, password, name: user.name, x, y });
+    await dispatch(shootResolve(destroy, type));
   } catch (error) {
     console.error('getGameState', error);
   }
