@@ -135,6 +135,7 @@ export const reducer = handleActions(
 export const createOrJoinGame = () => async (dispatch, getState, { api }) => {
   try {
     const user = getUser(getState());
+    console.log('USER: ', user);
     const userShips = getUserShips(getState());
     const result = await api.post('/battleship/createOrJoin', { name: user.name, gameId: 'random-gae-id', sessionId: user.room, shipPosition: userShips });
     dispatch(createOrJoinGameResolve(result));
