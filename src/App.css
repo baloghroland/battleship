@@ -129,7 +129,8 @@ body{
 	height: 29px;
 	border-top: 2px dotted #4429a6;
 	border-right: 2px dotted #4429a6;
-	display: inline-block;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .points:hover, .points.active{

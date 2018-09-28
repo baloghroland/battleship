@@ -20,16 +20,37 @@ class Table extends Component {
 
     this.createTable = y => {
       const arr = [1,2,3,4,5,6,7,8,9,10];
-      const { activeShip, ships, userShips } = this.props;
-
+      const { activeShip, ships, userShips, enemyShoots } = this.props;
 
       return arr.map((x) => {
+        const shipPointsArray = this.getShipPointsArray(userShips);
+        const foundShoot = enemyShoots.find(es => es.x === x && es.y === y);
+        const active = shipPointsArray.find((val) => (val.x == x && val.y == y)) ? 'active' : '';
+        const style = foundShoot ? foundShoot.type : 'untouched';
+
         return (
-          <li key={`${x}${y}`} className="points offset1 1" onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')} style={userShips.length === 5 ? {pointerEvents: 'none'} :  {}}>
+          <li
+            key={`${x}${y}`}
+            className={`points offset1 1 ${style} ${active}`}
+            onClick={() => this.placeShip(x, y, ships[activeShip-1].size, 'h')}
+            style={userShips.length === 5 ? {pointerEvents: 'none'} : {}}
+          >
             <span className="hole"></span>
           </li>
         )
       });
+    }
+
+    this.getShipPointsArray = userShips => {
+      let shipPointsArray = [];
+      userShips.map(ship => {
+        for(let i = 0; i < ship.size; i++ ) {
+          console.log()
+          if (ship.orientation == 'h') shipPointsArray.push({x: ship.x + i, y: ship.y});
+          if (ship.orientation == 'v') shipPointsArray.push({x: ship.x, y: ship.y + i});
+        }
+      });
+      return shipPointsArray;
     }
   }
 

@@ -9,7 +9,9 @@ import { getUser, getUserName } from '../user';
 export const initialState = {
   status: GAME_STATE.INIT,
   isUserTurn: false,
-  userShips: [],
+  userShips: [
+    
+  ],
   password: '',
   error: null,
   lastShootType: null,
