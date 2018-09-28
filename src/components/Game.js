@@ -7,16 +7,18 @@ class Game extends Component {
   render() {
     return (
       <div className="game row">
-        <div className="col">
+        <div className="col-sm-12 col-lg-4 left">
           <div className="own">
             <TableContainer />
           </div>
         </div>
-        <div className="col">
-          <LoginContainer />
-          <ShipsContainer />
+        <div className="col-sm-12 col-lg-4">
+          <div className="center">
+            <LoginContainer />
+            <ShipsContainer />
+          </div>
         </div>
-        <div className="col">
+        <div className="col-sm-12 col-lg-4 right">
           <div className="enemy">
             <TableContainer />
           </div>

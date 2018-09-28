@@ -52,18 +52,14 @@ body{
 	border: 2px solid #73B1B7;
 }
 
-.displays {
-	position: relative;
-	margin: 25px;
-}
-
 .top {
 	width: 320px;
 	height: 320px;
 	background: #6ac1c1;
 	border-left: 2px dotted #4429a6;
 	border-bottom: 2px dotted #4429a6;
-
+  margin: 0 auto;
+  position: relative;
 }
 
 .bottom {
@@ -84,7 +80,20 @@ body{
   font-size: 0;
   margin: 0;
   padding: 0;
-  left: 25px;
+  left: 23px;
+}
+
+.left, .right{
+  padding: 0;
+}
+
+.center{
+  border: 2px solid #73B1B7;
+  padding: 15px;
+}
+
+.center form input{
+  width: 100%;
 }
 
 .aTops {
@@ -154,15 +163,18 @@ body{
 }
 
 .ships{
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .ship{
-  margin-bottom: 15px;
   cursor: pointer;
-  border: 2px solid #4c33b1;
 }
 
-.ship.active{
-  border: 2px solid #b00;
+.ship span{
+  display: inline-block;
+  padding: 10px 17px;
+}
+
+.ship.active span, .ship:hover span{
+  background-color: #b00
 }

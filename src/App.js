@@ -10,6 +10,9 @@ class App extends Component {
           <img src="head.png" height="120" />
           <Game />
         </div>
+        <audio loop="loop" autoplay="autoplay">
+            <source src="song.mp3" type="audio/mpeg" />
+        </audio>
       </div>
     );
   }
