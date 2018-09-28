@@ -1,8 +1,7 @@
 import { createAction, handleActions } from 'redux-actions';
 import { createSelector } from 'reselect';
 import { GAME_STATE } from '../../constants';
-import { getUser } from '../user';
-import { setAppIsWaiting } from '../app';
+import { getUser, getUserName } from '../user';
 
 /**
  * INITIAL STATE
@@ -14,7 +13,8 @@ export const initialState = {
   password: '',
   error: null,
   lastShootType: null,
-  lastShootResult: {}
+  lastShootResult: {},
+  shoots: []
 };
 
 /**
@@ -32,6 +32,7 @@ export const SET_USER_TURN = 'SET_USER_TURN';
 export const SHOOT_RESOLVE = 'SHOOT_RESOLVE';
 export const SHOOT_REJECT = 'SHOOT_REJECT';
 
+export const UPDATE_SHOOTS = 'UPDATE_SHOOTS';
 
 /**
  * ACTION CREATORS
@@ -69,6 +70,11 @@ export const shootReject = createAction(
   error => error
 );
 
+export const updateShoots = createAction(
+  UPDATE_SHOOTS,
+  shoots => shoots
+);
+
 /**
  * SELECTORS
  */
@@ -90,6 +96,15 @@ export const getLastDestroyedShipSize = createSelector(
   getLastShootResult,
   lastShootResult => lastShootResult ? lastShootResult.size : 0
 );
+export const getShoots = state => state.game.shoots;
+export const getUserShoots = createSelector(
+  [getShoots, getUserName],
+  (shoots, username) => shoots.filter(shoot => shoot.name === username)
+);
+export const getEnemyShoots = createSelector(
+  [getShoots, getUserName],
+  (shoots, username) => shoots.filter(shoot => shoot.name !== username)
+);
 
 /**
  * REDUCER
@@ -102,7 +117,8 @@ export const reducer = handleActions(
     [updateGameStatus]: (state, { payload: status }) => ({ ...state, status }),
     [setUserTurn]: (state, { payload: isUserTurn }) => ({ ...state, isUserTurn }),
     [shootResolve]: (state, { payload: { destroy, type } }) => ({ ...state, lastShootType: type, lastShootResult: destroy }),
-    [shootReject]: (state, { payload: error }) => ({ ...state, error })
+    [shootReject]: (state, { payload: error }) => ({ ...state, error }),
+    [updateShoots]: (state, { payload: shoots }) => ({ ...state, shoots })
   },
   initialState
 );
@@ -141,6 +157,7 @@ export const getGameState = () => async (dispatch, getState, { api }) => {
         break;
     }
     if (result.turn === user.name) await dispatch(setUserTurn(true));
+    await dispatch(updateShoots(result.shoots));
     await dispatch(setUserTurn(false));
   } catch (error) {
     console.error('getGameState', error);
