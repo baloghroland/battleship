@@ -6,7 +6,7 @@ class TargetTable extends Component {
 
 
     this.createTable = y => {
-      const { shoot, userShoots, inProgress } = this.props;
+      const { shoot, userShoots, inProgress, isUserTurn } = this.props;
       const arr = [0,1,2,3,4,5,6,7,8,9];
 
       return arr.map((x) => {
@@ -14,7 +14,7 @@ class TargetTable extends Component {
         const style = foundShoot ? foundShoot.type : 'clickable';
 
         return (
-          <li key={`${x}${y}`} className={`points offset1 1 ${style}`} onClick={() => (!foundShoot && !inProgress) ? null : shoot(x, y)}>
+          <li key={`${x}${y}`} className={`points offset1 1 ${style}`} onClick={() => (!foundShoot && !inProgress && !isUserTurn) ? null : shoot(x, y)}>
             <span className="hole"></span>
           </li>
         )
@@ -23,8 +23,9 @@ class TargetTable extends Component {
   }
 
   render() {
+    const { isUserTurn } = this.props;
     return (
-      <div className="table">
+      <div className={`table ${isUserTurn ? '' : 'do-not-shoot'}`}>
         <div className="displays top">
           <span className="aTops hidezero">0</span>
           <span className="aTops">1</span>

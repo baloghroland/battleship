@@ -21,7 +21,7 @@ class Login extends Component {
       event.preventDefault();
 
       console.log('loginRoom: ', room);
-      
+
       await loginUser(room, name);
       await createOrJoinGame();
     }
@@ -36,19 +36,31 @@ class Login extends Component {
     const start = radio === 'ai' || startEnabled;
     console.log(this.state.radio);
     return (
-      <form className="login">
-        <div>
-          <label htmlFor="room"><input name="room" id="room" placeholder="Room name" onChange={this.handleChange} /></label>
+      <form className="login row">
+        <div className="col-sm-12 col-lg-4">
+          <div>
+            <label htmlFor="room">
+              Room
+              <input name="room" id="room" placeholder="Room name" onChange={this.handleChange} />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="name">
+              Name
+              <input name="name" id="name" placeholder="Player name" onChange={this.handleChange} />
+            </label>
+          </div>
         </div>
-        <div>
-          <label htmlFor="name"><input name="name" id="name" placeholder="Player name" onChange={this.handleChange} /></label>
+        <div className="col-sm-12 col-lg-4">
+          <div>
+            <button type="submit" className="btn btn-info" onClick={this.handleLogin} disabled={!start}>Start</button>
+          </div>
         </div>
-        <div>
-          <input type="radio" name="ai-human" value="ai" id="ai" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="ai" >AI</label>
-          <input type="radio" name="ai-human" value="human" id="human" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="human" >Human</label>
-        </div>
-        <div>
-          <button type="submit" className="btn btn-info" onClick={this.handleLogin} disabled={!start}>Start</button>
+        <div className="col-sm-12 col-lg-4">
+          <div className="radioss">
+            <label htmlFor="ai" >AI<input chekced={radio === 'ai' ? 'checked' : ''} type="radio" name="ai-human" value="ai" id="ai" onChange={this.handleRadio} /></label>
+            <label htmlFor="human" >Human<input chekced={radio === 'human' ? 'checked' : ''} type="radio" name="ai-human" value="human" id="human" onChange={this.handleRadio} /></label>
+          </div>
         </div>
       </form>
     );
