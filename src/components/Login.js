@@ -44,8 +44,8 @@ class Login extends Component {
           <label htmlFor="name"><input name="name" id="name" placeholder="Player name" onChange={this.handleChange} /></label>
         </div>
         <div>
-          <input type="radio" chekced={radio === 'ai'} name="ai-human" value="ai" id="ai" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="ai" >AI</label>
-          <input type="radio" chekced={radio === 'human'} name="ai-human" value="human" id="human" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="human" >Human</label>
+          <input type="radio" chekced={radio === 'ai' ? 'checked' : ''} name="ai-human" value="ai" id="ai" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="ai" >AI</label>
+          <input type="radio" chekced={radio === 'human' ? 'checked' : ''} name="ai-human" value="human" id="human" style={{width: "20%"}} onChange={this.handleRadio} /><label htmlFor="human" >Human</label>
         </div>
         <div>
           <button type="submit" className="btn btn-info" onClick={this.handleLogin} disabled={!start}>Start</button>

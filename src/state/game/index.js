@@ -140,7 +140,9 @@ export const createOrJoinGame = () => async (dispatch, getState, { api }) => {
     console.log('USER: ', user);
     const userShips = getUserShips(getState());
     const result = await api.post('/battleship/createOrJoin', { name: user.name, gameId: 'random-gae-id', sessionId: user.room, shipPosition: userShips });
-    dispatch(createOrJoinGameResolve(result));
+    await dispatch(createOrJoinGameResolve(result));
+    console.log(poll);
+    await dispatch(poll());
     console.log('Create or Join game success', result);
   } catch (error) {
     console.error('createOrJoinGame', error);
@@ -165,8 +167,8 @@ export const getGameState = () => async (dispatch, getState, { api }) => {
         await dispatch(updateGameStatus(GAME_STATE.GAME_OVER));
         break;
     }
-    if (result.turn === user.name) await dispatch(setUserTurn(true));
     await dispatch(updateShoots(result.shoots));
+    if (result.turn === user.name) return await dispatch(setUserTurn(true));
     await dispatch(setUserTurn(false));
   } catch (error) {
     console.error('getGameState', error);
@@ -184,4 +186,15 @@ export const shoot = (x, y) => async (dispatch, getState, { api }) => {
   } catch (error) {
     console.error('getGameState', error);
   }
+};
+
+
+export const poll = () => async (dispatch) => {
+  console.log('poll before');
+  setTimeout(async () => {
+    console.log('poll start');
+    await dispatch(getGameState());
+    await dispatch(poll());
+    console.log('poll end');
+  }, 1000);
 };
