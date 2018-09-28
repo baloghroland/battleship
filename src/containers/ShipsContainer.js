@@ -1,6 +1,6 @@
 import Ships from '../components/Ships';
 
-import { getActiveShip } from '../state/ships';
+import { getActiveShip, setActiveShip } from '../state/ships';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({ 
@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
  });
 
 const mapDispatchToProps = ({
+    setActiveShip
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Ships);
