@@ -33,9 +33,6 @@ class Game extends Component {
             </div>
           </div>
         </div>
-<<<<<<< Updated upstream
-        <LoginContainer />
-=======
         <div className="game row">
           <div className="col-sm-12">
             {gameStatus !== GAME_STATE.BATTLE_IN_PROGRESS &&
@@ -43,7 +40,6 @@ class Game extends Component {
             }
           </div>
         </div>
->>>>>>> Stashed changes
       </div>
     );
   }
