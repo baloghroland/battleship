@@ -30,7 +30,7 @@ export const reducer = handleActions(
   initialState
 );
 
-export const loginUser = (name, room) => async (dispatch, getState, { api }) => {
+export const loginUser = (room, name) => async (dispatch, getState, { api }) => {
   try {
     const result = await api.post('/user', { name });
     dispatch(loginUserResolve(result._id, result.name, result.coin, room));
