@@ -139,7 +139,7 @@ export const createOrJoinGame = () => async (dispatch, getState, { api }) => {
     const user = getUser(getState());
     console.log('USER: ', user);
     const userShips = getUserShips(getState());
-    const result = await api.post('/battleship/createOrJoin', { name: user.name, gameId: 'random-gae-id', sessionId: user.room, shipPosition: userShips });
+    const result = await api.post('/battleship/createOrJoin', { name: user.name, gameId: user.room, sessionId: user.room, shipPosition: userShips });
     dispatch(createOrJoinGameResolve(result));
     console.log('Create or Join game success', result);
   } catch (error) {

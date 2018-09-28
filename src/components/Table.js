@@ -19,7 +19,7 @@ class Table extends Component {
     }
 
     this.createTable = y => {
-      const arr = [1,2,3,4,5,6,7,8,9,10];
+      const arr = [0,1,2,3,4,5,6,7,8,9];
       const { activeShip, ships, userShips, enemyShoots } = this.props;
 
       return arr.map((x) => {
@@ -45,9 +45,8 @@ class Table extends Component {
       let shipPointsArray = [];
       userShips.map(ship => {
         for(let i = 0; i < ship.size; i++ ) {
-          console.log()
-          if (ship.orientation == 'h') shipPointsArray.push({x: ship.x + i, y: ship.y});
-          if (ship.orientation == 'v') shipPointsArray.push({x: ship.x, y: ship.y + i});
+          if (ship.orientation == 'v') shipPointsArray.push({x: ship.x + i, y: ship.y});
+          if (ship.orientation == 'h') shipPointsArray.push({x: ship.x, y: ship.y + i});
         }
       });
       return shipPointsArray;
@@ -70,6 +69,7 @@ class Table extends Component {
           <span className="aTops">9</span>
           <span className="aTops">10</span>
           <ul className="gridd">
+            {this.createTable(0)}
             {this.createTable(1)}
             {this.createTable(2)}
             {this.createTable(3)}
@@ -79,7 +79,6 @@ class Table extends Component {
             {this.createTable(7)}
             {this.createTable(8)}
             {this.createTable(9)}
-            {this.createTable(10)}
           </ul>
           <span className="aLeft">A</span>
           <span className="aLeft">B</span>
