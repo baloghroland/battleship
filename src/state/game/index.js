@@ -163,11 +163,13 @@ export const getGameState = () => async (dispatch, getState, { api }) => {
         await dispatch(updateGameStatus(GAME_STATE.BATTLE_IN_PROGRESS));
         break;
       case 'complete':
-        if (result.winner === user.name) await dispatch(updateGameStatus(GAME_STATE.VICTORY));
-        await dispatch(updateGameStatus(GAME_STATE.GAME_OVER));
         break;
     }
     await dispatch(updateShoots(result.shoots));
+    if (result.winner) {
+      if (result.winner === user.name) return await dispatch(updateGameStatus(GAME_STATE.VICTORY));
+        return await dispatch(updateGameStatus(GAME_STATE.GAME_OVER));
+    }
     if (result.turn === user.name) return await dispatch(setUserTurn(true));
     await dispatch(setUserTurn(false));
   } catch (error) {
