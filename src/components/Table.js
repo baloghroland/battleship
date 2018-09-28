@@ -10,6 +10,9 @@ class Table extends Component {
     }
 
     this.placeShip = (x, y, size, direction) => {
+      const { addUserShip } = this.props;
+
+      addUserShip(x, y, size, direction);
       console.log('ship placement: ', x, y, size, direction);
     }
 
