@@ -180,6 +180,7 @@ export const shoot = (x, y) => async (dispatch, getState, { api }) => {
     const password = getGamePassword(getState());
     const { destroy, type } = await api.post('/battleship/shoot', { sessionId: user.room, password, name: user.name, x, y });
     await dispatch(shootResolve(destroy, type));
+    if(type === 'hit') document.getElementById('destroy').play();
   } catch (error) {
     console.error('getGameState', error);
   }

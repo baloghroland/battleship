@@ -10,9 +10,14 @@ class App extends Component {
           <img src="head.png" height="120" />
           <Game />
         </div>
-        <audio loop="loop" autoPlay="autoplay">
+        <audio 
+          loop="loop" 
+          autoPlay="autoplay"
+        >
             <source src="song.mp3" type="audio/mpeg" />
         </audio>
+        <audio id="destroy" src="destroy.wav" preload="auto"></audio>
+        <div className="foot">Copyright: Warheads games 2018</div>
       </div>
     );
   }
