@@ -14,9 +14,13 @@ class Login extends Component {
       this.setState({[event.target.name]: event.target.value});
     }
 
-    this.handleLogin = event => {
+    this.handleLogin = async (event) => {
       const { room, name } = this.state;
-      this.props.loginUser(room, name);
+      const { loginUser, createOrJoinGame } = this.props;
+      
+      await loginUser(room, name);
+      await createOrJoinGame();
+
       event.preventDefault();
     }
 
